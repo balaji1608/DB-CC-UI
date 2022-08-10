@@ -4,7 +4,11 @@ import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
 import Sidebar from "./components/Sidebar";
 import Table from "./components/table";
+import TradeTable from "./components/trade";
 import Form from "./components/form";
+import SecurityTable from "./components/security";
+import SecurityUserDetails from "./components/security_userid";
+import Matured from "./components/matured";
 
 import {
   BrowserRouter as Router,
@@ -22,8 +26,11 @@ function App() {
           <Route exact path="/" element={<SignIn />} />
           <Route path="/SignUp" element={<SignUp />} />
           <Route path="/login" element={<SignIn />} />
-          <Route path="/table" element={<Table />} />
+          <Route path="/tradeTable" element={<TradeTable />} />
           <Route path="/form" element={<Form />} />
+          <Route path="/security" element={<SecurityTable />} />
+          <Route path="/securityUserID" element={<SecurityUserDetails />} />
+          <Route path="/matured" element={<Matured/>} />
         </Routes>
       </Router>
     </div>
