@@ -1,4 +1,4 @@
-import React, {useState,useRef} from 'react';
+import React, {useState} from 'react';
 import { NavLink, useNavigate} from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -44,22 +44,20 @@ export default function SignIn() {
   
   const [email, setemail] = useState('');
   const [password, setpassword] = useState('');
-
-  const messageRef = useRef(null);
   
   const submitForm=async(e)=>{
     e.preventDefault();
     console.log(email,password);
 
-    const res=await fetch('http://localhost:8090/login', {
+    const res=await fetch('https://db-grads-l29x-group-9.nw.r.appspot.com/login', {
   
       method:'post',
       headers: {
         "Content-type": "application/json; charset=UTF-8"
           },
       body:JSON.stringify({
-        email,
-        password
+        "email":email,
+        "password":password
       }),
     // credentials:'include'
   
@@ -68,20 +66,19 @@ export default function SignIn() {
    const data= await res.json();
   
   
-    console.log(res,data);
+   console.log(data)
     
-      if((data===true))
+      if((res.status===200) && data==true)
         {
           
-          
-          history('/');
+          console.log(res)
+          history('/tradeTable');
           
         }
       else
       {
-        messageRef.current.innerHTML="Wrong credentials."
         setTimeout(() => {
-          messageRef.current.innerHTML='';
+         
           setemail('');
           setpassword('');
         }, 2000)
@@ -100,7 +97,6 @@ export default function SignIn() {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        < div class="mb-3" ref={messageRef} style={{color: "red"}}> </div>
         <form className={classes.form} noValidate onSubmit={submitForm}>
           <TextField
             value={email}
