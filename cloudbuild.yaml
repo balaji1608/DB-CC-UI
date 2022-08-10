@@ -19,11 +19,11 @@ steps:
   entrypoint: npm
   args: ['install']
 
-- id: "Run tests"
-  name: "node:16.13.1"
-  dir: './react-app/'
-  entrypoint: npm
-  args: ['test']
+# - id: "Run tests"
+#   name: "node:16.13.1"
+#   dir: './react-app/'
+#   entrypoint: npm
+#   args: ['test']
 
 - id: "Run custom commands"
   name: "node:16.13.1"
